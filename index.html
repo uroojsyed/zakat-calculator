@@ -700,6 +700,67 @@
                     </div>
                     <div data-list="cash"></div>
                   </div>
+                  <div class="card">
+                    <div
+                      class="chip"
+                      style="background: #e5f3fb; color: #1f6d98"
+                    >
+                      FX
+                    </div>
+                    <div class="ch">
+                      <div>
+                        <h3>Foreign currency</h3>
+                        <p>
+                          Enter non-CAD balances. Each amount is converted to
+                          Canadian dollars.
+                        </p>
+                      </div>
+                      <div style="display: flex; gap: 8px; align-items: center">
+                        <span class="tot" id="fxTot"></span
+                        ><span class="info"
+                          ><button
+                            class="ib"
+                            type="button"
+                            aria-label="More information: Foreign currency"
+                            aria-expanded="false"
+                          >
+                            i
+                          </button>
+                          <div class="pop" role="tooltip">
+                            <b>Foreign currency</b>
+                            <p>
+                              USD, GBP, and EUR use the live reference exchange
+                              rates. For another currency, enter the current CAD
+                              value of one unit.
+                            </p>
+                            <a
+                              href="https://humanappeal.ca/appeals/zakat-and-nisab"
+                              target="_blank"
+                              rel="noreferrer"
+                              >Watch the Human Appeal video explanation</a
+                            >
+                          </div></span
+                        >
+                      </div>
+                    </div>
+                    <div data-list="fx"></div>
+                    <button class="add" type="button" data-add="fx">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      Add foreign balance
+                    </button>
+                  </div>
                   <div class="card span">
                     <div
                       class="chip"
@@ -1081,67 +1142,6 @@
                       </div>
                     </div>
                     <div data-list="owed"></div>
-                  </div>
-                  <div class="card">
-                    <div
-                      class="chip"
-                      style="background: #e5f3fb; color: #1f6d98"
-                    >
-                      FX
-                    </div>
-                    <div class="ch">
-                      <div>
-                        <h3>Foreign currency</h3>
-                        <p>
-                          Enter non-CAD balances. Each amount is converted to
-                          Canadian dollars.
-                        </p>
-                      </div>
-                      <div style="display: flex; gap: 8px; align-items: center">
-                        <span class="tot" id="fxTot"></span
-                        ><span class="info"
-                          ><button
-                            class="ib"
-                            type="button"
-                            aria-label="More information: Foreign currency"
-                            aria-expanded="false"
-                          >
-                            i
-                          </button>
-                          <div class="pop" role="tooltip">
-                            <b>Foreign currency</b>
-                            <p>
-                              USD, GBP, and EUR use the live reference exchange
-                              rates. For another currency, enter the current CAD
-                              value of one unit.
-                            </p>
-                            <a
-                              href="https://humanappeal.ca/appeals/zakat-and-nisab"
-                              target="_blank"
-                              rel="noreferrer"
-                              >Watch the Human Appeal video explanation</a
-                            >
-                          </div></span
-                        >
-                      </div>
-                    </div>
-                    <div data-list="fx"></div>
-                    <button class="add" type="button" data-add="fx">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M12 5v14M5 12h14" />
-                      </svg>
-                      Add foreign balance
-                    </button>
                   </div>
                   <div
                     class="card"

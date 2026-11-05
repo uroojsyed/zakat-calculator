@@ -44,7 +44,6 @@ body {
   background: var(--bg);
   color: var(--ink);
   line-height: 1.5;
-  padding-bottom: 40px;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
