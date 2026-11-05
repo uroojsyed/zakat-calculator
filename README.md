@@ -1,173 +1,76 @@
-# Human Appeal Canada — Zakat Calculator
+# Human Appeal Canada – Zakat Calculator (redesign)
 
-A responsive, interactive Zakat calculator designed to make charitable giving more accessible, transparent, and intuitive.
+A static, no-build version of the Human Appeal Canada Zakat Calculator. Plain HTML, CSS and vanilla JavaScript – no frameworks, no dependencies, no build step.
 
-This project reimagines the existing [Human Appeal Canada Zakat Calculator](https://humanappeal.ca/zakat-calculator), focusing on simplifying the calculation process, improving the user experience, and providing greater visibility into how Zakat obligations are determined.
+## Structure
 
-## Project Overview
-
-Zakat is an annual charitable obligation for eligible Muslims, generally calculated at 2.5% of qualifying net wealth.
-
-Traditional Zakat calculators can involve multiple steps, unclear calculations, and limited feedback. This project aims to address these challenges through a streamlined, user-centred interface that allows users to understand their financial inputs, view calculations in real time, and make informed giving decisions.
-
-### Project Objectives
-
-- **Transparency:** Clearly communicate how Zakat is calculated, including assets, liabilities, Nisab thresholds, and the resulting obligation.
-- **Usability:** Reduce unnecessary steps and simplify financial data entry.
-- **Accessibility:** Provide a responsive, easy-to-navigate experience across desktop and mobile devices.
-- **Real-time feedback:** Update calculations automatically as users enter or modify values.
-- **Informed giving:** Help users understand their Zakat eligibility and connect their calculations to charitable giving opportunities.
-
-## Features
-
-### Interactive Zakat Calculator
-
-- Dynamic entry of eligible assets and liabilities.
-- Support for multiple financial categories.
-- Gold and silver valuation inputs.
-- Automatic calculation of net Zakatable wealth.
-- Real-time Zakat estimates using the 2.5% rate.
-- Add, edit, and remove individual financial entries.
-- Reset functionality to clear calculations.
-
-### Nisab Threshold Comparison
-
-- Gold and silver Nisab reference values.
-- Visual comparison of net wealth against the selected threshold.
-- Progress indicators to help users understand eligibility.
-- Explanatory information about Nisab and Zakat obligations.
-
-### Calculation Transparency
-
-- Live calculation summaries.
-- Breakdown of total assets, liabilities, and estimated Zakat.
-- Visual indicators showing how entered financial information contributes to the final result.
-- Contextual explanations for calculation categories.
-
-### User Experience
-
-- Responsive layouts for desktop, tablet, and mobile devices.
-- Expandable guidance and frequently asked questions.
-- Accessible form labels and navigation controls.
-- Integrated Human Appeal Canada donation links.
-- Print-friendly styling.
-
-## Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| HTML5 | Semantic page structure |
-| CSS3 | Styling, layouts, responsive design |
-| JavaScript | Calculation logic and interactions |
-| SVG | Scalable graphic assets |
-| Google Fonts | Web typography |
-
-The application uses vanilla HTML, CSS, and JavaScript without a front-end framework or build system.
-
-## Project Structure
-
-```text
-human-appeal-zakat-calculator/
-│
-├── index.html
-│
+```
+.
+├── index.html                          # Page markup (header, hero, calculator, FAQ, footer, modal)
 ├── css/
-│   ├── styles.css
-│   └── responsive.css
-│
+│   └── styles.css                      # All styling; brand colours and fonts are CSS variables in :root
 ├── js/
-│   └── app.js
-│
+│   └── app.js                          # Calculator state, maths, live prices, rendering and UI behaviour
 ├── assets/
-│   └── human-appeal-logo.svg
-│
+│   ├── images/
+│   │   ├── logo.svg                    # Human Appeal logo (header)
+│   │   └── favicon.svg                 # Browser tab icon
+│   └── fonts/
+│       ├── DINNextLTPro-Regular.woff2   # DIN Next LT Pro Regular (primary face)
+│       └── DIN-Regular.woff2            # DIN Regular (second face)
+├── downloads/
+│   └── human-appeal-canada-zakat-calculator-website.zip   # Self-contained single-file copy, offered by the Download buttons
+├── .nojekyll                           # Tells GitHub Pages to serve files as-is
+├── .gitignore
 └── README.md
 ```
 
-### File Descriptions
+## Run locally
 
-**`index.html`**
+Open `index.html` in a browser, or serve the folder (needed for live prices):
 
-Contains the page markup, including navigation, calculator interface, informational sections, and footer.
+```bash
+python3 -m http.server 8000
+# then visit http://localhost:8000
+```
 
-**`css/styles.css`**
+## Deploy on GitHub Pages
 
-Contains the main visual styles, including typography, colours, forms, cards, buttons, and layout components.
+1. Push this folder to a GitHub repository.
+2. In the repo go to **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
+4. The site will be live at `https://<your-username>.github.io/<repo-name>/`.
 
-**`css/responsive.css`**
+## Editing guide
 
-Contains media queries for responsive layouts and print formatting.
+| To change… | Edit… |
+| --- | --- |
+| Brand colours, fonts | `:root` variables and `@font-face` rules at the top of `css/styles.css` |
+| Hero height / width | `.hero`, `.hero-in` and `.hero h1` rules in `css/styles.css` (the hero background is full-width; `.hero-in` controls its content width and vertical padding) |
+| Fallback gold, silver and exchange-rate values | The `M` object near the top of `js/app.js` |
+| Nisab weights (87.48 g gold, 612.36 g silver) | `GOLD_G`, `SILVER_G` in `js/app.js` |
+| Zakat rate (2.5%) | The `.025` multiplier in the `calc()` function in `js/app.js` |
+| Copy, navigation, FAQs, footer | `index.html` |
+| Logo | Replace `assets/images/logo.svg` |
 
-**`js/app.js`**
+## Live prices
 
-Handles Zakat calculations, dynamic form rendering, input processing, updates to calculation summaries, and interactive UI behaviour.
+On `http(s)` the calculator fetches live gold and silver prices from [gold-api.com](https://gold-api.com) and USD→CAD/GBP/EUR exchange rates from [Frankfurter](https://frankfurter.dev), refreshing every 15 minutes. If a request fails, or the page is opened from `file://`, it falls back to the reference values in the `M` object in `js/app.js` and shows a notice. Both services are free and need no API key.
 
-**`assets/`**
+## Updating the downloadable ZIP
 
-Stores reusable visual assets, including the Human Appeal Canada SVG logo.
+`downloads/human-appeal-canada-zakat-calculator-website.zip` contains one self-contained HTML file (CSS, JS, logo and fonts inlined). It is a static file, so after you change the site, rebuild and replace it. One way: inline `css/styles.css`, `js/app.js`, the logo and the fonts (as base64 data URIs) into a copy of `index.html`, save it as `human-appeal-canada-zakat-calculator.html`, and zip it.
 
-## How the Calculator Works
+## Notes
 
-1. **Enter Assets:** Users input eligible financial assets, such as cash, savings, investments, and precious metals.
-2. **Enter Liabilities:** Users record applicable outstanding financial obligations.
-3. **Calculate Net Wealth:** The calculator subtracts eligible liabilities from Zakatable assets.
-4. **Compare Against Nisab:** Net wealth is compared with the relevant Nisab threshold.
-5. **Estimate Zakat:** Where applicable, the calculator calculates 2.5% of qualifying net wealth.
-6. **Review Results:** Users can view updated totals, breakdowns, and donation options.
+- **Fonts:** the site uses DIN Next LT Pro Regular, with DIN Regular as the second font in the stack (`--sans` at the top of `css/styles.css`). The files in `assets/fonts/` are `.woff2` conversions of the supplied `.ttf` files. DIN has no € sign, so that one character falls back to the system font.
+- **Bold:** only Regular weights are provided, so `font-synthesis: none` is set on `body` to stop browsers from faking bold (which makes text look blurry). Hierarchy comes from size, colour and letter-spacing. If you get real Medium/Bold files, add an `@font-face` for each weight and delete that `font-synthesis` declaration.
+- **Font licensing:** DIN Next LT Pro and DIN are commercial typefaces. Confirm Human Appeal Canada's licence covers web use on this domain before making the repository public. If not, delete the `@font-face` rules and the font files; the CSS falls back to Avenir Next, Segoe UI, then Arial.
+- This calculator is an educational planning estimate, not a religious ruling.
 
-Calculations update dynamically as financial information changes.
+## Live estimate behaviour
 
-## Design Approach
-
-### User-Centred Design
-
-The interface prioritizes clear information hierarchy, reduced cognitive load, and immediate feedback.
-
-Financial categories are presented in manageable sections, while contextual guidance helps users understand unfamiliar terms without leaving the calculator.
-
-### Transparency and Explainability
-
-Rather than presenting only a final Zakat amount, the calculator exposes the underlying financial information and intermediate calculations.
-
-This approach is intended to improve user confidence and help individuals understand how their entered values affect their obligations.
-
-### Accessibility and Responsiveness
-
-The application incorporates semantic HTML, labelled inputs, responsive layouts, and visual hierarchy to support usability across devices.
-
-Further accessibility testing and validation would be required before claiming full WCAG compliance.
-
-## Future Improvements
-
-- Integrate live gold and silver market prices.
-- Add automated exchange-rate conversion.
-- Introduce optional user research and usability testing.
-- Evaluate calculator interactions using privacy-conscious analytics.
-- Add input validation and calculation unit tests.
-- Improve accessible announcements for dynamically updated results.
-- Support multilingual interfaces.
-- Connect calculator results more directly to the donation process.
-
-## Development Notes
-
-This repository separates the original single-file HTML implementation into reusable HTML, CSS, JavaScript, and SVG files.
-
-The original calculation logic, content, and functionality have been retained during restructuring.
-
-The built-in HTML download functionality does not currently bundle external CSS, JavaScript, or asset files. For a fully functioning copy, use the complete project directory.
-
-Google Fonts and Human Appeal Canada navigation and donation links require an internet connection.
-
-## Disclaimer
-
-This calculator provides an estimated Zakat obligation for informational purposes. Individual circumstances and interpretations of Zakat requirements may differ. Users should consult a qualified religious authority when necessary.
-
-## Credits
-
-**Project:** Human Appeal Canada — Zakat Calculator
-
-**Organization:** [Human Appeal Canada](https://humanappeal.ca)
-
-**Focus:** User Experience, Web Development, Information Transparency, and Digital Accessibility.
-
-This is a proposed redesign and development project. It should not be interpreted as an officially deployed Human Appeal Canada product unless formally adopted by the organization.
+- **Desktop (wider than 1100px):** the live-estimate column is sticky and scrolls independently of the page, so the full breakdown can be read without scrolling the form. Heights are set in the `aside` rules in `css/styles.css`.
+- **Phones and tablets (1100px and narrower):** the estimate sits below the form. A translucent floating button follows the user down the page and shows the live Zakat amount. Tapping it opens the estimate in a bottom sheet; "Collapse" (or tapping outside) returns to the form. The button disappears once the real estimate box scrolls into view. A slim scroll indicator on the right edge shows position on the long page. The logic lives in `js/app.js` (search for "floating live-estimate button").
+- **Info tooltips:** show on hover (or keyboard focus) with a mouse, and on tap on touch devices. They are positioned with fixed coordinates and clamped to the screen, so they are never clipped by a scrolling panel.
+- **Calculation details** is an accordion, open by default.
