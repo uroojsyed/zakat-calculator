@@ -10,6 +10,7 @@
     />
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
     <link rel="stylesheet" href="css/styles.css" />
+<style>.card,.nis{background:#e9ddf5;border-color:#d3bfe6}</style>
   </head>
   <body id="top">
     <div class="shell">
@@ -898,7 +899,145 @@
                       quote for your exact item.
                     </p>
                   </div>
-                  <div class="card">
+                  <div style="display: flex; flex-direction: column; gap: 28px">
+                    <div class="card" style="flex: 1">
+                      <div
+                        class="chip"
+                        style="background: #e5f3fb; color: #1f6d98"
+                      >
+                        <svg
+                          width="17"
+                          height="17"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="ch">
+                        <div>
+                          <h3>Business inventory</h3>
+                          <p>
+                            Stock held for sale, valued at today’s reasonable
+                            selling price.
+                          </p>
+                        </div>
+                        <div style="display: flex; gap: 8px; align-items: center">
+                          <span class="tot" data-tot="business"></span
+                          ><span class="info"
+                            ><button
+                              class="ib"
+                              type="button"
+                              aria-label="More information: Business inventory"
+                              aria-expanded="false"
+                            >
+                              i
+                            </button>
+                            <div class="pop" role="tooltip">
+                              <b>Business inventory</b>
+                              <p>
+                                Enter the current reasonable selling value of
+                                stock held for sale.
+                              </p>
+                              <a
+                                href="https://humanappeal.ca/appeals/zakat-and-nisab"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Watch the Human Appeal video explanation</a
+                              >
+                            </div></span
+                          >
+                        </div>
+                      </div>
+                      <div data-list="business"></div>
+                    </div>
+                    <div
+                      class="card"
+                      id="interest-calculation"
+                      style="scroll-margin-top: 100px; flex: 1"
+                    >
+                      <div
+                        class="chip"
+                        style="background: #ffe9ef; color: #b51c48"
+                      >
+                        <svg
+                          width="17"
+                          height="17"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 10c0 6-8 11-8 11z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="ch">
+                        <div>
+                          <h3>Interest received</h3>
+                          <p>
+                            Track interest separately as an amount to set aside
+                            for donation.
+                          </p>
+                        </div>
+                        <span class="info"
+                          ><button
+                            class="ib"
+                            type="button"
+                            aria-label="More information: Interest received"
+                            aria-expanded="false"
+                          >
+                            i
+                          </button>
+                          <div class="pop" role="tooltip">
+                            <b>Interest received</b>
+                            <p>
+                              This amount is kept outside your Zakatable wealth
+                              and Zakat total. This calculator provides a planning
+                              estimate, not a religious ruling.
+                            </p>
+                            <a
+                              href="https://humanappeal.ca/appeals/zakat-and-nisab"
+                              target="_blank"
+                              rel="noreferrer"
+                              >Watch the Human Appeal video explanation</a
+                            >
+                          </div></span
+                        >
+                      </div>
+                      <label class="money" style="display: block"
+                        ><span class="sr"
+                          >Interest received in Canadian dollars</span
+                        ><b>$</b
+                        ><input
+                          class="fi"
+                          id="interest"
+                          type="number"
+                          min="0"
+                          step=".01"
+                          placeholder="0.00 CAD"
+                      /></label>
+                      <p class="help">Not included in your Zakat calculation.</p>
+                      <button
+                        class="full"
+                        id="intBtn"
+                        type="button"
+                        style="display: none"
+                      ></button>
+                    </div>
+                  </div>
+                  <div class="card span">
                     <div
                       class="chip"
                       style="background: #e2f6f0; color: #00785e"
@@ -1029,142 +1168,6 @@
                         in CAD.</span
                       >
                     </div>
-                  </div>
-                  <div class="card">
-                    <div
-                      class="chip"
-                      style="background: #e5f3fb; color: #1f6d98"
-                    >
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"
-                        />
-                      </svg>
-                    </div>
-                    <div class="ch">
-                      <div>
-                        <h3>Business inventory</h3>
-                        <p>
-                          Stock held for sale, valued at today’s reasonable
-                          selling price.
-                        </p>
-                      </div>
-                      <div style="display: flex; gap: 8px; align-items: center">
-                        <span class="tot" data-tot="business"></span
-                        ><span class="info"
-                          ><button
-                            class="ib"
-                            type="button"
-                            aria-label="More information: Business inventory"
-                            aria-expanded="false"
-                          >
-                            i
-                          </button>
-                          <div class="pop" role="tooltip">
-                            <b>Business inventory</b>
-                            <p>
-                              Enter the current reasonable selling value of
-                              stock held for sale.
-                            </p>
-                            <a
-                              href="https://humanappeal.ca/appeals/zakat-and-nisab"
-                              target="_blank"
-                              rel="noreferrer"
-                              >Watch the Human Appeal video explanation</a
-                            >
-                          </div></span
-                        >
-                      </div>
-                    </div>
-                    <div data-list="business"></div>
-                  </div>
-                  <div
-                    class="card"
-                    id="interest-calculation"
-                    style="scroll-margin-top: 100px"
-                  >
-                    <div
-                      class="chip"
-                      style="background: #ffe9ef; color: #b51c48"
-                    >
-                      <svg
-                        width="17"
-                        height="17"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 10c0 6-8 11-8 11z"
-                        />
-                      </svg>
-                    </div>
-                    <div class="ch">
-                      <div>
-                        <h3>Interest received</h3>
-                        <p>
-                          Track interest separately as an amount to set aside
-                          for donation.
-                        </p>
-                      </div>
-                      <span class="info"
-                        ><button
-                          class="ib"
-                          type="button"
-                          aria-label="More information: Interest received"
-                          aria-expanded="false"
-                        >
-                          i
-                        </button>
-                        <div class="pop" role="tooltip">
-                          <b>Interest received</b>
-                          <p>
-                            This amount is kept outside your Zakatable wealth
-                            and Zakat total. This calculator provides a planning
-                            estimate, not a religious ruling.
-                          </p>
-                          <a
-                            href="https://humanappeal.ca/appeals/zakat-and-nisab"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Watch the Human Appeal video explanation</a
-                          >
-                        </div></span
-                      >
-                    </div>
-                    <label class="money" style="display: block"
-                      ><span class="sr"
-                        >Interest received in Canadian dollars</span
-                      ><b>$</b
-                      ><input
-                        class="fi"
-                        id="interest"
-                        type="number"
-                        min="0"
-                        step=".01"
-                        placeholder="0.00 CAD"
-                    /></label>
-                    <p class="help">Not included in your Zakat calculation.</p>
-                    <button
-                      class="full"
-                      id="intBtn"
-                      type="button"
-                      style="display: none"
-                    ></button>
                   </div>
                 </div>
               </div>
